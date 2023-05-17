@@ -1,0 +1,14 @@
+.DS_Store
+.vscode
+.vite-ssg-dist
+.vite-ssg-temp
+*.local
+dist
+dist-ssr
+build
+public
+node_modules
+.idea/
+*.log
+sourcemaps
+coverage

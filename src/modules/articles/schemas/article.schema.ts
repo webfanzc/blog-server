@@ -1,39 +1,35 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, ObjectId } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import type { HydratedDocument, ObjectId } from 'mongoose'
 
-export type ArticleDocument = HydratedDocument<Article>;
-
-@Schema()
+@Schema({ collection: 'articles' })
 export class Article {
   @Prop()
-  title: string;
+    title: string
 
   @Prop()
-  abstract: number;
+    abstract: string
 
   @Prop()
-  cover: string;
-
-  @Prop()
-  content: string;
+    content: string
 
   @Prop({ default: 'skelanimals' })
-  author: string;
+    author: string
 
   @Prop({ default: 0 })
-  createAt: number;
+    createdAt: number
 
   @Prop({ default: 0 })
-  likes: number;
+    likes: number
 
   @Prop({ default: 0 })
-  unlikes: number;
+    unlikes: number
 
-  @Prop({ ref: 'Comment' })
-  comments: [ObjectId];
+  @Prop({ ref: 'Comment', default: [] })
+    comments: ObjectId[]
 
-  @Prop({ ref: 'Tag' })
-  tags: [ObjectId];
+  @Prop({ ref: 'Tag', default: [] })
+    tags: ObjectId[]
 }
 
-export const ArticleSchema = SchemaFactory.createForClass(Article);
+export type ArticleDocument = HydratedDocument<Article>
+export const ArticleSchema = SchemaFactory.createForClass(Article)
