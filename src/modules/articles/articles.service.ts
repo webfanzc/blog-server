@@ -20,7 +20,7 @@ export class ArticlesService {
 
     try {
       const query = this.articleModel
-        .find(filter, 'title abstract author createdAt')
+        .find(filter, 'title abstract author createdAt tags')
         .sort({ createdAt: -1 })
 
       const dataQuery = query

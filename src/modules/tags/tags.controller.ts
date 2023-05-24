@@ -2,11 +2,13 @@ import { Body, Controller, Get, Post, Query } from '@nestjs/common'
 import { TagsService } from './tags.service'
 import { EditTagDto, TagDto } from './dto/tag.dto'
 import { errorResponse } from 'src/utils'
+import { Public } from '../auth/constants'
 
 @Controller('tags')
 export class TagsController {
   constructor (private readonly tagService: TagsService) {}
 
+  @Public()
   @Get('/list')
   async getTagList () {
     return await this.tagService.getTags()

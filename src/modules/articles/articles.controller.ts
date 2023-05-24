@@ -3,11 +3,13 @@ import { ArticlesService } from './articles.service'
 import type { PaginationQuery } from 'src/types/utils'
 import { AddArticleDto, EditArticleDto } from './dto/articles.dto'
 import { Types } from 'mongoose'
+import { Public } from '../auth/constants'
 
 @Controller('articles')
 export class ArticlesController {
   constructor (private readonly articlesService: ArticlesService) {}
 
+  @Public()
   @Get('/list')
   async getArticlesList (@Query() params: PaginationQuery & { tagId?: string }) {
     const pagination = {
@@ -31,6 +33,7 @@ export class ArticlesController {
     return await this.articlesService.addArticle(articleDto)
   }
 
+  @Public()
   @Get('/detail')
   async getArticleDetail (@Query('id') id: string) {
     return await this.articlesService.findArticleById(id)
