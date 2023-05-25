@@ -7,11 +7,12 @@ import { Public } from '../auth/constants'
 import { FileInterceptor } from '@nestjs/platform-express'
 import * as multer from 'multer'
 import { errorResponse, successResponse } from 'src/utils'
+import * as path from 'path'
 
 const storage = multer.diskStorage({
   destination (req, file, cb) {
-    // 存储在public下的images目录
-    cb(null, 'public/images/')
+    // 存储到根目录的images下
+    cb(null, path.resolve(__dirname, '/images/'))
   },
   filename (req, file, cb) {
     cb(null, `${Date.now()}_${file.originalname}`)
