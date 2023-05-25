@@ -24,7 +24,11 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             articles_module_1.ArticlesModule,
-            mongoose_1.MongooseModule.forRoot('mongodb://skelanimals:zcyh0925@127.0.0.1:27017/blog'),
+            mongoose_1.MongooseModule.forRoot('mongodb://127.0.0.1:27017/blog', {
+                user: 'skelanimals',
+                pass: 'zcyh0925',
+                dbName: 'blog'
+            }),
             tags_module_1.TagsModule,
             comments_module_1.CommentsModule,
             auth_module_1.AuthModule,

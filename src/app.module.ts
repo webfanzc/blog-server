@@ -14,7 +14,12 @@ import { JwtAuthGuard } from './modules/auth/jwtAuth.guard'
   imports: [
     ArticlesModule,
     MongooseModule.forRoot(
-      'mongodb://skelanimals:zcyh0925@127.0.0.1:27017/blog'
+      'mongodb://127.0.0.1:27017/blog',
+      {
+        user: 'skelanimals',
+        pass: 'zcyh0925',
+        dbName: 'blog'
+      }
     ),
     TagsModule,
     CommentsModule,
