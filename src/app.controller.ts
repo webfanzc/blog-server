@@ -4,7 +4,7 @@ import { LocalAuthGuard } from './modules/auth/localAuth.guard'
 import { AuthService } from './modules/auth/auth.service'
 import { Public } from './modules/auth/constants'
 
-@Controller('api')
+@Controller()
 export class AppController {
   constructor (private readonly appService: AppService, private readonly authService: AuthService) {}
 

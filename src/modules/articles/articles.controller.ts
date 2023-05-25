@@ -1,9 +1,22 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common'
+import { Body, Controller, Get, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common'
 import { ArticlesService } from './articles.service'
 import type { PaginationQuery } from 'src/types/utils'
 import { AddArticleDto, EditArticleDto } from './dto/articles.dto'
 import { Types } from 'mongoose'
 import { Public } from '../auth/constants'
+import { FileInterceptor } from '@nestjs/platform-express'
+import * as multer from 'multer'
+import { errorResponse, successResponse } from 'src/utils'
+
+const storage = multer.diskStorage({
+  destination (req, file, cb) {
+    // 存储在public下的images目录
+    cb(null, 'public/images/')
+  },
+  filename (req, file, cb) {
+    cb(null, `${Date.now()}_${file.originalname}`)
+  }
+})
 
 @Controller('articles')
 export class ArticlesController {
@@ -47,5 +60,22 @@ export class ArticlesController {
   @Post('/update')
   async updateArticle (@Body() articleDto: EditArticleDto) {
     return await this.articlesService.updateArticleById(articleDto)
+  }
+
+  @Post('/upload')
+  @UseInterceptors(FileInterceptor('file[]', {
+    storage,
+    limits: {
+      fileSize: 1024 * 1024 * 5 // 5MB
+    }
+  }))
+  async uploadPhoto (@UploadedFile() file: Express.Multer.File, @Body() body: any) {
+    if (file.path) {
+      return successResponse({
+        imagePath: '/images/' + file.filename
+      })
+    }
+
+    return errorResponse('上传失败')
   }
 }

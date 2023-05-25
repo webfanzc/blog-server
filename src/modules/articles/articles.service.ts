@@ -22,6 +22,7 @@ export class ArticlesService {
       const query = this.articleModel
         .find(filter, 'title abstract author createdAt tags')
         .sort({ createdAt: -1 })
+        .populate('tags')
 
       const dataQuery = query
         .clone()
@@ -75,7 +76,7 @@ export class ArticlesService {
     }
   }
 
-  async addArticle (articleData: Pick<Article, 'title' | 'abstract' | 'tags' | 'content'>) {
+  async addArticle (articleData: Pick<Article, 'title' | 'tags' | 'content'>) {
     try {
       const ArticleModel = this.articleModel
       const article = new ArticleModel({ ...articleData, createdAt: Date.now() })

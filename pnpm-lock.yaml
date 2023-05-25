@@ -25,6 +25,9 @@ dependencies:
   mongoose:
     specifier: ^7.1.1
     version: registry.npmmirror.com/mongoose@7.1.1
+  multer:
+    specifier: 1.4.5-lts.1
+    version: registry.npmmirror.com/multer@1.4.5-lts.1
   passport:
     specifier: ^0.6.0
     version: registry.npmmirror.com/passport@0.6.0
@@ -57,6 +60,9 @@ devDependencies:
   '@types/jest':
     specifier: 29.5.0
     version: registry.npmmirror.com/@types/jest@29.5.0
+  '@types/multer':
+    specifier: ^1.4.7
+    version: registry.npmmirror.com/@types/multer@1.4.7
   '@types/node':
     specifier: 18.15.11
     version: registry.npmmirror.com/@types/node@18.15.11
@@ -1491,6 +1497,14 @@ packages:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/mime/-/mime-3.0.1.tgz}
     name: '@types/mime'
     version: 3.0.1
+    dev: true
+
+  registry.npmmirror.com/@types/multer@1.4.7:
+    resolution: {integrity: sha512-/SNsDidUFCvqqcWDwxv2feww/yqhNeTRL5CVoL3jU4Goc4kKEL10T7Eye65ZqPNi4HRx8sAEX59pV1aEH7drNA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/multer/-/multer-1.4.7.tgz}
+    name: '@types/multer'
+    version: 1.4.7
+    dependencies:
+      '@types/express': registry.npmmirror.com/@types/express@4.17.13
     dev: true
 
   registry.npmmirror.com/@types/node@18.15.11:
@@ -5656,6 +5670,21 @@ packages:
       object-assign: registry.npmmirror.com/object-assign@4.1.1
       type-is: registry.npmmirror.com/type-is@1.6.18
       xtend: registry.npmmirror.com/xtend@4.0.2
+
+  registry.npmmirror.com/multer@1.4.5-lts.1:
+    resolution: {integrity: sha512-ywPWvcDMeH+z9gQq5qYHCCy+ethsk4goepZ45GLD63fOu0YcNecQxi64nDs3qluZB+murG3/D4dJ7+dGctcCQQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/multer/-/multer-1.4.5-lts.1.tgz}
+    name: multer
+    version: 1.4.5-lts.1
+    engines: {node: '>= 6.0.0'}
+    dependencies:
+      append-field: registry.npmmirror.com/append-field@1.0.0
+      busboy: registry.npmmirror.com/busboy@1.6.0
+      concat-stream: registry.npmmirror.com/concat-stream@1.6.2
+      mkdirp: registry.npmmirror.com/mkdirp@0.5.6
+      object-assign: registry.npmmirror.com/object-assign@4.1.1
+      type-is: registry.npmmirror.com/type-is@1.6.18
+      xtend: registry.npmmirror.com/xtend@4.0.2
+    dev: false
 
   registry.npmmirror.com/mute-stream@0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mute-stream/-/mute-stream-0.0.8.tgz}

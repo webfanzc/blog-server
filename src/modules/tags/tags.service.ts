@@ -9,9 +9,9 @@ import { errorResponse, successResponse } from 'src/utils'
 export class TagsService {
   constructor (@InjectModel('Tag') private readonly tagModel: Model<TagDocument>) {}
 
-  async getTags () {
+  async getTags (query: FilterQuery<TagDocument> = {}) {
     try {
-      const tags = await this.tagModel.find({}, 'tagName')
+      const tags = await this.tagModel.find(query, 'tagName')
 
       return successResponse(tags, '获取标签列表成功')
     } catch (error) {

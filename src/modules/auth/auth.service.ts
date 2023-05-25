@@ -3,6 +3,7 @@ import { UserService } from '../user/user.service'
 import type { User, UserDocument } from '../user/schemas/user.schema'
 import type { ObjectId } from 'mongoose'
 import { JwtService } from '@nestjs/jwt'
+import { successResponse } from 'src/utils'
 
 @Injectable()
 export class AuthService {
@@ -23,8 +24,9 @@ export class AuthService {
   async login (user: UserDocument) {
     const payload = { username: user.username, sub: user._id }
 
-    return {
+    return successResponse({
+
       access_token: this.jwtService.sign(payload)
-    }
+    })
   }
 }
