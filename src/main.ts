@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import type { NestExpressApplication } from '@nestjs/platform-express'
-import fs from 'node:fs'
+import * as fs from 'fs'
 // import * as path from 'path'
 const httpsOptions = {
   key: fs.readFileSync('/usr/local/nginx/cert/chasingdream.cn.pem'),
