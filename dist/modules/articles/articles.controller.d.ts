@@ -56,4 +56,5 @@ export declare class ArticlesController {
     uploadPhoto(file: Express.Multer.File, body: any): Promise<import("src/types/utils").IResponse<null> | import("src/types/utils").IResponse<{
         imagePath: string;
     }>>;
+    replaceOldUrl(): Promise<import("src/types/utils").IResponse<null>>;
 }

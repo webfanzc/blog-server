@@ -14,13 +14,13 @@ export class ArticlesService {
     @InjectModel(Article.name) private readonly articleModel: Model<ArticleDocument>
   ) {}
 
-  async getList (pagination: PaginationQuery, filter: FilterQuery<ArticleDocument> = {}) {
+  async getList (pagination: PaginationQuery, filter: FilterQuery<ArticleDocument> = {}, fields = 'title abstract author createdAt tags') {
     const { pageNo, pageSize } = pagination
     const start = calculateStartIndex(pagination)
 
     try {
       const query = this.articleModel
-        .find(filter, 'title abstract author createdAt tags')
+        .find(filter, fields)
         .sort({ createdAt: -1 })
         .populate('tags')
 

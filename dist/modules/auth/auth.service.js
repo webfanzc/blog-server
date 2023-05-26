@@ -8,17 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
@@ -26,6 +15,8 @@ const user_service_1 = require("../user/user.service");
 const jwt_1 = require("@nestjs/jwt");
 const utils_1 = require("../../utils");
 let AuthService = class AuthService {
+    usersService;
+    jwtService;
     constructor(usersService, jwtService) {
         this.usersService = usersService;
         this.jwtService = jwtService;
@@ -33,7 +24,7 @@ let AuthService = class AuthService {
     async validateUser(username, pass) {
         const user = (await this.usersService.getOneUser({ username }));
         if (user && user.password === pass) {
-            const { password } = user, result = __rest(user, ["password"]);
+            const { password, ...result } = user;
             return result;
         }
         return null;

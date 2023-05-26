@@ -15,6 +15,7 @@ const core_1 = require("@nestjs/core");
 const passport_1 = require("@nestjs/passport");
 const constants_1 = require("./constants");
 let JwtAuthGuard = class JwtAuthGuard extends (0, passport_1.AuthGuard)('jwt') {
+    reflector;
     constructor(reflector) {
         super();
         this.reflector = reflector;

@@ -18,6 +18,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const utils_1 = require("../../utils");
 let TagsService = class TagsService {
+    tagModel;
     constructor(tagModel) {
         this.tagModel = tagModel;
     }

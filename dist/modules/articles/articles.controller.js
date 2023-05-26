@@ -31,6 +31,7 @@ const storage = multer.diskStorage({
     }
 });
 let ArticlesController = class ArticlesController {
+    articlesService;
     constructor(articlesService) {
         this.articlesService = articlesService;
     }
@@ -67,6 +68,19 @@ let ArticlesController = class ArticlesController {
             });
         }
         return (0, utils_1.errorResponse)('上传失败');
+    }
+    async replaceOldUrl() {
+        const articles = await this.articlesService.getList({ pageNo: 1, pageSize: 1000 }, {}, 'title abstract tags content');
+        articles.data?.list.forEach(art => {
+            this.articlesService.updateArticleById({
+                id: art._id,
+                title: art.title,
+                abstract: '',
+                tags: art.tags,
+                content: art.content.replaceAll('https://chasingdream.cn:3000', '').replaceAll('https://chasingdream.cn/server', '')
+            }).catch(console.error);
+        });
+        return (0, utils_1.successResponse)(null, '更新成功');
     }
 };
 __decorate([
@@ -120,6 +134,13 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "uploadPhoto", null);
+__decorate([
+    (0, common_1.Get)('/replaceOldUrl'),
+    (0, constants_1.Public)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ArticlesController.prototype, "replaceOldUrl", null);
 ArticlesController = __decorate([
     (0, common_1.Controller)('articles'),
     __metadata("design:paramtypes", [articles_service_1.ArticlesService])

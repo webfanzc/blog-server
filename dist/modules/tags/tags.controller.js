@@ -21,6 +21,8 @@ const constants_1 = require("../auth/constants");
 const articles_service_1 = require("../articles/articles.service");
 const mongoose_1 = require("mongoose");
 let TagsController = class TagsController {
+    tagService;
+    articlesService;
     constructor(tagService, articlesService) {
         this.tagService = tagService;
         this.articlesService = articlesService;
@@ -47,11 +49,10 @@ let TagsController = class TagsController {
         return await this.tagService.updateTagById(body.id, body.tagName);
     }
     async clearUnusedTags() {
-        var _a, _b;
         const tags = await this.tagService.getTags();
         const unusedTags = [];
         if (tags.code === 0) {
-            const data = (_a = tags.data) !== null && _a !== void 0 ? _a : [];
+            const data = tags.data ?? [];
             for (let i = 0; i < data.length; i++) {
                 const dataItem = data[i];
                 const articles = await this.articlesService.getList({ pageNo: 1, pageSize: 10 }, {
@@ -59,7 +60,7 @@ let TagsController = class TagsController {
                         $in: [new mongoose_1.Types.ObjectId(dataItem._id)]
                     }
                 });
-                if (articles.code === 0 && !((_b = articles.data) === null || _b === void 0 ? void 0 : _b.list.length)) {
+                if (articles.code === 0 && !articles.data?.list.length) {
                     unusedTags.push(dataItem._id);
                 }
             }

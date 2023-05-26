@@ -19,6 +19,8 @@ const localAuth_guard_1 = require("./modules/auth/localAuth.guard");
 const auth_service_1 = require("./modules/auth/auth.service");
 const constants_1 = require("./modules/auth/constants");
 let AppController = class AppController {
+    appService;
+    authService;
     constructor(appService, authService) {
         this.appService = appService;
         this.authService = authService;

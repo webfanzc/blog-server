@@ -31,7 +31,7 @@ import type { EditArticleDto } from './dto/articles.dto';
 export declare class ArticlesService {
     private readonly articleModel;
     constructor(articleModel: Model<ArticleDocument>);
-    getList(pagination: PaginationQuery, filter?: FilterQuery<ArticleDocument>): Promise<import("src/types/utils").IResponse<null> | import("src/types/utils").IResponse<{
+    getList(pagination: PaginationQuery, filter?: FilterQuery<ArticleDocument>, fields?: string): Promise<import("src/types/utils").IResponse<null> | import("src/types/utils").IResponse<{
         current: number;
         total: number;
         list: Omit<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, Article> & Omit<Article & {

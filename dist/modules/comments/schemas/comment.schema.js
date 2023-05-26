@@ -12,6 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommentSchema = exports.Comment = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 let Comment = class Comment {
+    name;
+    content;
+    createdAt;
 };
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),

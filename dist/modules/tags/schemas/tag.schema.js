@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TagSchema = exports.Tag = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 let Tag = class Tag {
+    tagName;
 };
 __decorate([
     (0, mongoose_1.Prop)(),

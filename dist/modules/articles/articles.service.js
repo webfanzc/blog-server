@@ -19,15 +19,16 @@ const article_schema_1 = require("./schemas/article.schema");
 const mongoose_2 = require("mongoose");
 const index_1 = require("../../utils/index");
 let ArticlesService = class ArticlesService {
+    articleModel;
     constructor(articleModel) {
         this.articleModel = articleModel;
     }
-    async getList(pagination, filter = {}) {
+    async getList(pagination, filter = {}, fields = 'title abstract author createdAt tags') {
         const { pageNo, pageSize } = pagination;
         const start = (0, index_1.calculateStartIndex)(pagination);
         try {
             const query = this.articleModel
-                .find(filter, 'title abstract author createdAt tags')
+                .find(filter, fields)
                 .sort({ createdAt: -1 })
                 .populate('tags');
             const dataQuery = query
@@ -79,7 +80,7 @@ let ArticlesService = class ArticlesService {
     async addArticle(articleData) {
         try {
             const ArticleModel = this.articleModel;
-            const article = new ArticleModel(Object.assign(Object.assign({}, articleData), { createdAt: Date.now() }));
+            const article = new ArticleModel({ ...articleData, createdAt: Date.now() });
             const ret = await article.save();
             return (0, index_1.successResponse)(ret._id, '添加文章成功');
         }

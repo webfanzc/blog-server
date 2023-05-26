@@ -12,6 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArticleSchema = exports.Article = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 let Article = class Article {
+    title;
+    abstract;
+    content;
+    author;
+    createdAt;
+    likes;
+    unlikes;
+    comments;
+    tags;
 };
 __decorate([
     (0, mongoose_1.Prop)(),
