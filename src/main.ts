@@ -1,16 +1,14 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import type { NestExpressApplication } from '@nestjs/platform-express'
-import * as fs from 'fs'
+// import * as fs from 'fs'
 // import * as path from 'path'
-const httpsOptions = {
-  key: fs.readFileSync('/usr/local/nginx/cert/chasingdream.cn.pem'),
-  cert: fs.readFileSync('/usr/local/nginx/cert/chasingdream.cn.key')
-}
+// const httpsOptions = {
+//   key: fs.readFileSync('/usr/local/nginx/cert/chasingdream.cn.pem'),
+//   cert: fs.readFileSync('/usr/local/nginx/cert/chasingdream.cn.key')
+// }
 async function bootstrap () {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    httpsOptions
-  })
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
   app.useStaticAssets('/images', { prefix: '/images' })
   await app.listen(3000)
