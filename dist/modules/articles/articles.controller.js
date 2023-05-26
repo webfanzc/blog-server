@@ -43,7 +43,7 @@ let ArticlesController = class ArticlesController {
         if (params.tagId) {
             return await this.articlesService.getList(pagination, {
                 tags: {
-                    $in: [new mongoose_1.Types.ObjectId(params.tagId)]
+                    $in: [new mongoose_1.Types.ObjectId(params.tagId), params.tagId]
                 }
             });
         }
