@@ -80,20 +80,20 @@ export class ArticlesController {
     return errorResponse('上传失败')
   }
 
-  @Get('/replaceOldUrl')
-  @Public()
-  async replaceOldUrl () {
-    const articles = await this.articlesService.getList({ pageNo: 1, pageSize: 1000 }, {}, 'title abstract tags content')
-    articles.data?.list.forEach(art => {
-      this.articlesService.updateArticleById({
-        id: art._id as unknown as string,
-        title: art.title,
-        abstract: '',
-        tags: art.tags,
-        content: art.content.replaceAll('https://chasingdream.cn:3000', '').replaceAll('https://chasingdream.cn/server', '')
-      }).catch(console.error)
-    })
+  // @Get('/replaceOldUrl')
+  // @Public()
+  // async replaceOldUrl () {
+  //   const articles = await this.articlesService.getList({ pageNo: 1, pageSize: 1000 }, {}, 'title abstract tags content')
+  //   articles.data?.list.forEach(art => {
+  //     this.articlesService.updateArticleById({
+  //       id: art._id as unknown as string,
+  //       title: art.title,
+  //       abstract: '',
+  //       tags: art.tags,
+  //       content: art.content.replaceAll('https://chasingdream.cn:3000', '').replaceAll('https://chasingdream.cn/server', '')
+  //     }).catch(console.error)
+  //   })
 
-    return successResponse(null, '更新成功')
-  }
+  //   return successResponse(null, '更新成功')
+  // }
 }
