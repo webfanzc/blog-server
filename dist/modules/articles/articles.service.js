@@ -91,10 +91,9 @@ let ArticlesService = class ArticlesService {
     }
     async updateArticleById(articleData) {
         try {
-            const { id, title, abstract, content, tags } = articleData;
+            const { id, title, content, tags } = articleData;
             await this.articleModel.findByIdAndUpdate(id, {
                 title,
-                abstract,
                 content,
                 tags
             });
