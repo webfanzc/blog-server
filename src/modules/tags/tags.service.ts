@@ -3,11 +3,12 @@ import { InjectModel } from '@nestjs/mongoose'
 import type { FilterQuery, ProjectionType } from 'mongoose'
 import { Model } from 'mongoose'
 import type { TagDocument } from './schemas/tag.schema'
+import { Tag } from './schemas/tag.schema'
 import { errorResponse, successResponse } from 'src/utils'
 
 @Injectable()
 export class TagsService {
-  constructor (@InjectModel('Tag') private readonly tagModel: Model<TagDocument>) {}
+  constructor (@InjectModel(Tag.name) private readonly tagModel: Model<TagDocument>) {}
 
   async getTags (query: FilterQuery<TagDocument> = {}) {
     try {

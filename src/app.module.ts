@@ -9,6 +9,7 @@ import { AuthModule } from './modules/auth/auth.module'
 import { UserModule } from './modules/user/user.module'
 import { APP_GUARD } from '@nestjs/core'
 import { JwtAuthGuard } from './modules/auth/jwtAuth.guard'
+import { DemosModule } from './modules/demos/demos.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { JwtAuthGuard } from './modules/auth/jwtAuth.guard'
     TagsModule,
     CommentsModule,
     AuthModule,
-    UserModule
+    UserModule,
+    DemosModule
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }]
